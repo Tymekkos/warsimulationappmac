@@ -65,6 +65,8 @@ public class WorldMap {
             return ICharacters.get(0);
         }
         else{
+            ICharacters.get(0).isTheSameProfession(ICharacters.get(1));
+            System.out.println(ICharacters.get(0).isTheSameProfession(ICharacters.get(1)) + " " + ICharacters.get(0).toString() + " " + ICharacters.get(1).toString());
             winner = pvp(ICharacters.get(0), ICharacters.get(1));
             winner.restartHP();
             for(int i=2; i<ICharacters.size(); i++){

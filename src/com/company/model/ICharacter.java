@@ -28,6 +28,9 @@ public interface ICharacter {
                 break;
         }
     }
+    default boolean isTheSameProfession(ICharacter opponent){
+        return this.getClass().equals(opponent.getClass());
+    }
     public int getHP();
     public void setHP(int hp);
     public int getArmor();
