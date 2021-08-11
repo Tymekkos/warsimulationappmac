@@ -32,6 +32,8 @@ public interface ICharacter {
         return this.getClass().equals(opponent.getClass());
     }
     public int getHP();
+    public int getAttack();
+    public void setAttack(int attack);
     public void setHP(int hp);
     public int getArmor();
     public void restartHP();

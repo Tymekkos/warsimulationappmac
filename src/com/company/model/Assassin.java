@@ -33,8 +33,18 @@ public class Assassin implements ICharacter{
         if(tmpAttack <= 0){
             tmpAttack = 0;
         }
-        System.out.println("Assassin attacked!");
+        //System.out.println("Assassin attacked!");
         return tmpAttack;
+    }
+
+    @Override
+    public int getAttack() {
+        return attack;
+    }
+
+    @Override
+    public void setAttack(int attack) {
+        this.attack = attack;
     }
 
     @Override

@@ -38,13 +38,23 @@ public class Tank implements ICharacter {
         {
             tmpAttack = 0;
         }
-        System.out.println("Tank attacked!");
+        //System.out.println("Tank attacked!");
         return attack;
     }
 
     @Override
     public int getHP() {
         return this.hp;
+    }
+
+    @Override
+    public int getAttack() {
+        return 0;
+    }
+
+    @Override
+    public void setAttack(int attack) {
+
     }
 
     @Override

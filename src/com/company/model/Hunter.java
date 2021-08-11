@@ -37,13 +37,23 @@ public class Hunter implements ICharacter {
         if(tmpAttack <= 0){
             tmpAttack = 0;
         }
-        System.out.println("Hunter attacked!");
+        //System.out.println("Hunter attacked!");
         return tmpAttack;
     }
 
     @Override
     public int getHP() {
         return this.hp;
+    }
+
+    @Override
+    public int getAttack() {
+        return 0;
+    }
+
+    @Override
+    public void setAttack(int attack) {
+
     }
 
     @Override

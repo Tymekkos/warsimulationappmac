@@ -6,7 +6,7 @@ import static com.company.model.StatsRepository.BASE_SLAYER_HP_PERCENTAGE;
 import static com.company.model.StatsRepository.MAX_HP;
 
 //ignores armor, deals damage based on max health
-public class Slayer implements ICharacter {
+public class  Slayer implements ICharacter {
 
     private final int attack;
     private int hp;
@@ -33,13 +33,23 @@ public class Slayer implements ICharacter {
         if(tmpAttack <= 0){
             tmpAttack = 0;
         }
-        System.out.println("Slayer attacked!");
+        //System.out.println("Slayer attacked!");
         return tmpAttack;
     }
 
     @Override
     public int getHP() {
         return this.hp;
+    }
+
+    @Override
+    public int getAttack() {
+        return 0;
+    }
+
+    @Override
+    public void setAttack(int attack) {
+
     }
 
     @Override
