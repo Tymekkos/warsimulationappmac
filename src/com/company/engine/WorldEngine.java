@@ -10,7 +10,7 @@ public class WorldEngine {
         worldMap = new WorldMap(size);
         worldMap.putCharactersOnMap(50);
 
-        int daysNumber = 10;
+        int daysNumber = 1000;
         for(int i=0; i<daysNumber; i++){
             worldMap.day();
             Visualisator.printWorld(worldMap);

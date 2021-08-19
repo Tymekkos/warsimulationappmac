@@ -12,6 +12,7 @@ public class RandomVector2dFactory {
     public static Vector2d getFieldAroundTheVector2d(Vector2d field, int bound){
         Random random = new Random();
         switch (random.nextInt(8)) {
+            //north
             case 0 -> {
                 if (field.getY() + 1 >= bound) {
                     return new Vector2d(field.getX(), 0);
@@ -19,6 +20,8 @@ public class RandomVector2dFactory {
                     return new Vector2d(field.getX(), field.getY() + 1);
                 }
             }
+
+            //north east
             case 1 -> {
                 if (field.getX() + 1 >= bound && field.getY() + 1 >= bound) {
                     return new Vector2d(0, 0);
@@ -30,6 +33,7 @@ public class RandomVector2dFactory {
                     return new Vector2d(field.getX() + 1, field.getY() + 1);
                 }
             }
+            //east
             case 2 -> {
                 if (field.getX() + 1 >= bound) {
                     return new Vector2d(0, field.getY());
@@ -37,6 +41,8 @@ public class RandomVector2dFactory {
                     return new Vector2d(field.getX() + 1, field.getY());
                 }
             }
+
+            //south east
             case 3 -> {
                 if (field.getX() + 1 >= bound && field.getY() - 1 < 0) {
                     return new Vector2d(0, bound - 1);
@@ -48,6 +54,8 @@ public class RandomVector2dFactory {
                     return new Vector2d(field.getX() + 1, field.getY() - 1);
                 }
             }
+
+            //south
             case 4 -> {
                 if (field.getY() - 1 < 0) {
                     return new Vector2d(field.getX(), bound - 1);
@@ -55,6 +63,7 @@ public class RandomVector2dFactory {
                     return new Vector2d(field.getX(), field.getY() - 1);
                 }
             }
+            // south west
             case 5 -> {
                 if (field.getX() - 1 < 0 && field.getY() - 1 < 0) {
                     return new Vector2d(bound - 1, bound - 1);
@@ -66,6 +75,8 @@ public class RandomVector2dFactory {
                     return new Vector2d(field.getX() - 1, field.getY() - 1);
                 }
             }
+
+            // west
             case 6 -> {
                 if (field.getX() - 1 < 0) {
                     return new Vector2d(bound - 1, field.getY());
@@ -73,6 +84,8 @@ public class RandomVector2dFactory {
                     return new Vector2d(field.getX() - 1, field.getY());
                 }
             }
+
+            // north west
             case 7 -> {
                 if (field.getX() - 1 < 0 && field.getY() + 1 >= bound) {
                     return new Vector2d(bound - 1, 0);
@@ -85,6 +98,7 @@ public class RandomVector2dFactory {
                 }
             }
             default -> {
+                System.out.println("aac");
                 return null;
             }
         }
