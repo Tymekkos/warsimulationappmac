@@ -2,20 +2,17 @@ package com.company.model;
 
 import java.util.Random;
 
-import static com.company.model.StatsRepository.BASE_SLAYER_HP_PERCENTAGE;
-import static com.company.model.StatsRepository.MAX_HP;
+import static com.company.stats.StatsRepository.BASE_SLAYER_HP_PERCENTAGE;
+import static com.company.stats.StatsRepository.MAX_HP;
 
 //ignores armor, deals damage based on max health
-public class  Slayer implements ICharacter {
-
-    private final int attack;
-    private int hp;
-    private int armor;
+public class  Slayer extends Character implements ICharacter{
 
     public Slayer(int attack, int hp, int armor) {
         this.attack = attack;
         this.hp = hp;
         this.armor = armor;
+        this.age = 0;
     }
 
     @Override
@@ -65,5 +62,15 @@ public class  Slayer implements ICharacter {
     @Override
     public void restartHP() {
         this.hp = (int) (MAX_HP* BASE_SLAYER_HP_PERCENTAGE);
+    }
+
+    @Override
+    public int getAge() {
+        return age;
+    }
+
+    @Override
+    public void setAge(int age) {
+        this.age = age;
     }
 }

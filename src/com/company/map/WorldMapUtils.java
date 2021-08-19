@@ -7,11 +7,21 @@ import java.util.List;
 public class WorldMapUtils {
     private static ICharacter pvp(ICharacter character1, ICharacter character2){
         //returns lost unit
-        while(character1.getHP() > 0 && character2.getHP() > 0){
-            int damage1 = character1.attack(character2.getArmor()) ;
-            int damage2 = character2.attack(character1.getArmor()) ;
+        int counter = 0;
+        while((character1.getHP() > 0 && character2.getHP() > 0) && counter <=50){
+            int damage1 = character1.attack(character2.getArmor());
+            int damage2 = character2.attack(character1.getArmor());
             character2.setHP(character2.getHP() - damage1);
             character1.setHP(character1.getHP() - damage2);
+            counter++;
+        }
+        if(counter > 50){
+            if(character1.getHP() >  character2.getHP()){
+                return character2;
+            }
+            else{
+                return character1;
+            }
         }
         if(character1.getHP() > 0)
             return character2;

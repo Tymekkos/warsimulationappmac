@@ -37,4 +37,6 @@ public interface ICharacter {
     public void setHP(int hp);
     public int getArmor();
     public void restartHP();
+    public int getAge();
+    public void setAge(int age);
 }

@@ -2,19 +2,16 @@ package com.company.model;
 
 import java.util.Random;
 
-import static com.company.model.StatsRepository.BASE_HUNTER_HP_PERCENTAGE;
-import static com.company.model.StatsRepository.MAX_HP;
+import static com.company.stats.StatsRepository.BASE_HUNTER_HP_PERCENTAGE;
+import static com.company.stats.StatsRepository.MAX_HP;
 
-public class Hunter implements ICharacter {
-
-        private int attack;
-        private int hp;
-        private int armor;
+public class Hunter extends Character implements ICharacter{
 
     public Hunter(int attack, int hp, int armor) {
         this.attack = attack;
         this.hp = hp;
         this.armor = armor;
+        this.age = 0;
     }
 
     @Override
@@ -71,5 +68,14 @@ public class Hunter implements ICharacter {
         this.hp = (int) (MAX_HP* BASE_HUNTER_HP_PERCENTAGE);
     }
 
+    @Override
+    public int getAge() {
+        return age;
+    }
+
+    @Override
+    public void setAge(int age) {
+        this.age = age;
+    }
 }
 

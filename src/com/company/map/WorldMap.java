@@ -11,23 +11,18 @@ import java.util.List;
 import java.util.Map;
 
 import static com.company.map.WorldMapUtils.pvpForList;
+import static com.company.stats.ApplicationProperties.*;
 
 public class WorldMap {
     private final Map<Vector2d, List<ICharacter>> map = new HashMap<>();
-    private final int size;
 
-    public WorldMap(int size){
-        this.size = size;
-        for(int i=0; i<size; i++) {
-            for(int j=0; j<size; j++) {
+    public WorldMap(){
+        for(int i=0; i<bound; i++) {
+            for(int j=0; j<bound; j++) {
                 map.put(new Vector2d(j, i), new ArrayList<>());
                 }
             }
         }
-
-    public int getSize() {
-        return size;
-    }
 
     public Map<Vector2d, List<ICharacter>> getMap() {
         return map;
@@ -35,7 +30,7 @@ public class WorldMap {
 
     public void putCharactersOnMap(int charactersNumber){
         for(int i=0; i<charactersNumber; i++){
-            map.get(RandomVector2dFactory.getRandomVector2d(10)).add(CharacterFactory.getRandomCharacter());
+            map.get(RandomVector2dFactory.getRandomVector2d(bound)).add(CharacterFactory.getRandomCharacter());
         }
     }
 
@@ -54,9 +49,7 @@ public class WorldMap {
 
         mockMap.forEach(((vector2d, iCharacters) -> iCharacters.forEach(iCharacter -> iCharacter.move(map, vector2d))));
 
-
         //pvp
-
         Map<Vector2d, List<ICharacter>> mockMap2 = new HashMap<>();
 
         map.forEach(((vector2d, iCharacters) -> {
@@ -66,16 +59,35 @@ public class WorldMap {
 
         mockMap2.forEach(((vector2d, iCharacters) -> {
             pvpForList(iCharacters);
-            for(int i=1; i<iCharacters.size(); i+=2){
-                var child = CharacterFactory.getParticularCharacter(iCharacters.get(i));
-                var newField = RandomVector2dFactory.getFieldAroundTheVector2d(vector2d, 10);
-                map.get(newField).add(child);
-                System.out.println(map.get(newField));
-                System.out.println(newField);
-
+            for(int i=0; i<iCharacters.size(); i++){
+                if(i % 2 == 1){
+                    var child = CharacterFactory.getParticularCharacter(iCharacters.get(i));
+                    var newField = RandomVector2dFactory.getFieldAroundTheVector2d(vector2d, bound);
+                    if(map.get(newField).isEmpty()){
+                        map.get(newField).add(child);
+                    }
+                }
+                var character = map.get(vector2d).get(i);
+                character.setAge(character.getAge()+1);
             }
         }));
 
+        //removing elders
+        Map<Vector2d, List<ICharacter>> mockMap3 = new HashMap<>();
+
+        map.forEach(((vector2d, iCharacters) -> {
+            List<ICharacter> ICharacterList = new ArrayList<>(iCharacters);
+            mockMap3.put(vector2d, ICharacterList);
+        }));
+        mockMap3.forEach(((vector2d, iCharacters) -> {
+            pvpForList(iCharacters);
+            for(int i=iCharacters.size()-1; i>=1; i--){
+                var character = map.get(vector2d).get(i);
+                if(character.getAge()>=maxCharactersAge){
+                    map.get(vector2d).remove(character);
+                }
+            }
+        }));
     }
 
 }

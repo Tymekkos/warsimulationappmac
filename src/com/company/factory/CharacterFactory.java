@@ -4,12 +4,12 @@ import com.company.model.*;
 
 import java.util.Random;
 
-import static com.company.model.StatsRepository.*;
+import static com.company.stats.StatsRepository.*;
 
 public class CharacterFactory {
     public static ICharacter getRandomCharacter(){
         Random random = new Random();
-        int randomNumber = random.nextInt(5);
+        int randomNumber = random.nextInt(6);
 
         return switch (randomNumber) {
             case 0 -> new Hunter((int) (MAX_ATTACK* BASE_HUNTER_ATTACK_PERCENTAGE), (int) (MAX_HP* BASE_HUNTER_HP_PERCENTAGE), (int) (MAX_ARMOR* BASE_HUNTER_ARMOR_PERCENTAGE));

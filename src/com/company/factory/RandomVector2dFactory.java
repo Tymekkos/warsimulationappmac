@@ -98,7 +98,6 @@ public class RandomVector2dFactory {
                 }
             }
             default -> {
-                System.out.println("aac");
                 return null;
             }
         }
